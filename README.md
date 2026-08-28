@@ -164,7 +164,7 @@ Platform-specific docs:
 | File | Purpose |
 |------|---------|
 | [README_AI.md](README_AI.md) | AI agent bootstrap and configuration |
-| [RULES.md](RULES.md) | Global routing rules (scope gate before ACT) |
+| [RULES.md](RULES.md) | Global routing rules (personal lab mode — no auth gate) |
 | [skills/MASTER-ROUTING.md](skills/MASTER-ROUTING.md) | PRIMARY fast ladder |
 | [skills/routing.md](skills/routing.md) | Task → skill routing matrix |
 | [skills/SKILL.md](skills/SKILL.md) | Master entry point |

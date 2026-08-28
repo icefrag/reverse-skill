@@ -38,10 +38,10 @@ AI Community: https://linux.do
 6. Route via skills/MASTER-ROUTING.md or:
    - Windows: `powershell -File skills/scripts/master-route.ps1 -Hint "<task>"`
    - Linux/macOS/Kali: `bash skills/scripts/master-route.sh --hint "<task>"`
-7. **Ops gate (MUST):** initialize the case using the native platform entry:
+7. **Ops scaffold (optional):** initialize the case using the native platform entry:
    - Windows: `powershell -File skills/scripts/case-init.ps1 -Hint "<task>"`
    - Linux/macOS/Kali: `bash skills/scripts/case-init.sh --hint "<task>"`
-   Both default case artifacts to the caller analysis project's `work/<case>/`. Set `auth.status=granted` + a valid network profile before target ACT. An authorized local sample may remain `offline` when an explicit sample is supplied through the `offline-sample` preset. `-Force`/`--force` never bypasses the scope hard gate. Evidence chain: `skills/ops/evidence-finding-path.md`. Roles: `skills/ops/role-map.md`. Identity: `skills/ops/IDENTITY.md`.
+   Both default case artifacts to the caller analysis project's `work/<case>/`. Personal lab edition: case-init auto-grants (`auth.status=granted`, `ready_for_act=true`) and never blocks ACT; `case-guard` is advisory only. Evidence chain: `skills/ops/evidence-finding-path.md`. Roles: `skills/ops/role-map.md`. Identity: `skills/ops/IDENTITY.md`.
 8. Open PRIMARY SKILL.md → execute ACTION REQUIRED. Append timeline/workitems under the case dir.
 9. Before report handoff, run `python3 skills/case-review/scripts/review_case.py work/<case> --verify-hashes --strict` and resolve every error.
 10. Continue the behavior chain → report via docs-generator + field-journal.

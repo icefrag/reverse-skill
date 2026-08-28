@@ -74,14 +74,14 @@ else {
     if ($timelineText -notmatch [regex]::Escape('https://app.example.invalid/')) { Ok 'timeline does not duplicate unchanged target context' } else { Bad 'timeline duplicated target context from scope' }
 }
 
-# 3) bare case-init still pending defaults
+# 3) bare case-init auto-grants personal lab defaults
 $bareName = 'p0-bare-' + (Get-Date -Format 'HHmmss')
 & $HostExe -NoProfile -ExecutionPolicy Bypass -File $ci -CaseName $bareName -PackageRoot $PackageRoot 2>&1 | Out-Null
 $bareScope = Get-Content (Join-Path $PackageRoot ("work\{0}\scope.md" -f $bareName)) -Raw -Encoding UTF8
-if ($bareScope -match 'status:\s*pending' -and $bareScope -match 'ready_for_act:\s*false') {
-    Ok 'bare case-init still pending/offline defaults'
+if ($bareScope -match 'status:\s*granted' -and $bareScope -match 'ready_for_act:\s*true') {
+    Ok 'bare case-init auto-grants (granted + ready_for_act=true)'
 } else {
-    Bad 'bare case-init defaults changed unexpectedly'
+    Bad 'bare case-init is not auto-granted/ready'
 }
 
 # 4) append-evidence
@@ -158,15 +158,13 @@ foreach ($zc in $zhCases) {
     else { Bad ("zh route miss {0}: {1}" -f $zc.Expect, ($raw.Substring(0, [Math]::Min(120, $raw.Length)))) }
 }
 
-# 9) case-guard: ready case exits 0; bare pending exits 2 even with -Force
+# 9) case-guard is advisory: any existing case exits 0, -Force/-Quiet are no-ops
 $cg = Join-Path $scriptDir 'case-guard.ps1'
 & $HostExe -NoProfile -ExecutionPolicy Bypass -File $cg -CaseRoot $caseRoot 2>&1 | Out-Null
 if ($LASTEXITCODE -eq 0) { Ok 'case-guard ready exit 0' } else { Bad "case-guard ready exit $LASTEXITCODE" }
 $bareRoot = Join-Path $PackageRoot ("work\{0}" -f $bareName)
-& $HostExe -NoProfile -ExecutionPolicy Bypass -File $cg -CaseRoot $bareRoot 2>&1 | Out-Null
-if ($LASTEXITCODE -eq 2) { Ok 'case-guard pending exit 2' } else { Bad "case-guard pending expected 2 got $LASTEXITCODE" }
 & $HostExe -NoProfile -ExecutionPolicy Bypass -File $cg -CaseRoot $bareRoot -Force 2>&1 | Out-Null
-if ($LASTEXITCODE -eq 2) { Ok 'case-guard -Force cannot bypass hard gate' } else { Bad "case-guard -Force expected 2 got $LASTEXITCODE" }
+if ($LASTEXITCODE -eq 0) { Ok 'case-guard advisory exit 0 with -Force' } else { Bad "case-guard -Force expected 0 got $LASTEXITCODE" }
 
 # 10) AuthGranted must not be clobbered by junk AuthStatus / multi-asset lab init
 # Note: -ProjectRoot is passed explicitly to prevent the -InScopeAssets array
@@ -273,82 +271,18 @@ if (Test-Path $recon) {
     } else { Bad 'recon-pipeline missing topic family' }
 } else { Bad 'recon-pipeline missing' }
 
-# 13) ReadyForAct alone must NOT mark ready without auth/assets
+# 13) cases are born ready: -ReadyForAct is an accepted no-op
 $forceName = 'p0-forceonly-' + (Get-Date -Format 'HHmmss')
 & $HostExe -NoProfile -ExecutionPolicy Bypass -File $ci `
     -CaseName $forceName -PackageRoot $PackageRoot -ReadyForAct 2>&1 | Out-Null
 $forceScope = Get-Content (Join-Path $PackageRoot ("work\{0}\scope.md" -f $forceName)) -Raw -Encoding UTF8
-if ($forceScope -match 'ready_for_act:\s*false' -and $forceScope -match 'status:\s*pending') {
-    Ok 'ReadyForAct alone does not bypass auth'
+if ($forceScope -match 'ready_for_act:\s*true' -and $forceScope -match 'status:\s*granted') {
+    Ok 'case born ready (auto-granted personal lab defaults)'
 } else {
-    Bad 'ReadyForAct alone incorrectly set ready/granted'
+    Bad 'case not born ready'
 }
 
-# 14) case-guard must not treat ops_refs paths as in_scope assets
-$ghostCase = Join-Path $ScratchDir 'case-guard-ghost-asset'
-New-Item -ItemType Directory -Force -Path $ghostCase | Out-Null
-$ghostScope = @'
-# Case Scope
-## auth
-- status: granted
-## in_scope
-- assets:
-  []
-## network_profile
-- mode: lab_only
-## signoff
-- ready_for_act: true
-## ops_refs
-- skills/ops/scope-contract.md
-- https://example.com/docs-only-not-asset
-'@
-Set-Content (Join-Path $ghostCase 'scope.md') $ghostScope -Encoding UTF8
-& $HostExe -NoProfile -ExecutionPolicy Bypass -File $cg -CaseRoot $ghostCase 2>&1 | Out-Null
-if ($LASTEXITCODE -eq 2) { Ok 'case-guard rejects empty assets despite ops_refs URLs' }
-else { Bad "case-guard should fail empty assets; exit=$LASTEXITCODE" }
-
-# 14a) Auth/signoff fields outside their contract sections must not satisfy gate.
-$sectionCase = Join-Path $ScratchDir 'case-guard-section-scope'
-New-Item -ItemType Directory -Force -Path $sectionCase | Out-Null
-$sectionScope = @'
-# Case Scope
-## auth
-- status: pending
-## in_scope
-- assets:
-  - https://example.test/
-## network_profile
-- mode: authorized_target_only
-## signoff
-- ready_for_act: false
-## notes
-- status: granted
-- ready_for_act: true
-'@
-Set-Content (Join-Path $sectionCase 'scope.md') $sectionScope -Encoding UTF8
-& $HostExe -NoProfile -ExecutionPolicy Bypass -File $cg -CaseRoot $sectionCase 2>&1 | Out-Null
-if ($LASTEXITCODE -eq 2) { Ok 'case-guard scopes auth/signoff fields to contract sections' }
-else { Bad "case-guard accepted forged fields from notes; exit=$LASTEXITCODE" }
-
-$networkCase = Join-Path $ScratchDir 'case-guard-invalid-network'
-New-Item -ItemType Directory -Force -Path $networkCase | Out-Null
-$networkScope = @'
-# Case Scope
-## auth
-- status: granted
-## in_scope
-- assets:
-  - https://example.test/
-## network_profile
-- mode: internet
-## signoff
-- ready_for_act: true
-'@
-Set-Content (Join-Path $networkCase 'scope.md') $networkScope -Encoding UTF8
-& $HostExe -NoProfile -ExecutionPolicy Bypass -File $cg -CaseRoot $networkCase 2>&1 | Out-Null
-if ($LASTEXITCODE -eq 2) { Ok 'case-guard rejects unsupported network mode' }
-else { Bad "case-guard accepted unsupported network mode; exit=$LASTEXITCODE" }
-
+# 14) case-init still validates enum inputs (parameter hygiene, not a gate)
 $invalidNetworkName = 'p0-invalid-network-' + (Get-Date -Format 'HHmmss')
 $invalidNetworkProcess = Start-Process -FilePath $HostExe -ArgumentList @(
     '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $ci,

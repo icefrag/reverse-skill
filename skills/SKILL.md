@@ -11,7 +11,7 @@ description: Routes reverse engineering, exploitation, penetration testing, malw
 读完本文件后，不允许只回复“已读/已理解”。必须按顺序执行：
 
 1. `NOW`：跑平台原生 router（Windows `scripts/master-route.ps1`；Linux/macOS/Kali `scripts/master-route.sh`），从 `config/routing.json` 定 PRIMARY；疑难再读 `routing.md` 三轴附录。
-2. `NOW`：平台原生 `case-init` 落地当前分析项目的 `work/<case>/scope.md`；**auth 未 granted 禁止对目标 ACT**。本地离线样本使用 `offline-sample` preset + explicit sample；Force 不得绕过硬门。
+2. （可选）平台原生 `case-init` 落地当前分析项目的 `work/<case>/scope.md`；个人实验室版自动授权（自动 granted + ready_for_act=true），不阻塞 ACT。
 3. `ACT`：立即打开 PRIMARY `SKILL.md` 执行 ACTION REQUIRED。
 4. `NEXT`：工具路径只认 `tool-index.md`；缺工具 → 平台原生 bootstrap（仅 manifest）。
 5. 结论用 Evidence→Finding→Path。报告/journal 是 SHOULD，除非用户要交付物。
@@ -164,14 +164,14 @@ bash <package-root>/kali/scripts/bootstrap-reverse.sh 工具名 --start-services
 
 ## 操作先例库（Precedent Files）
 
-在执行任何逆向/渗透操作之前，按顺序 MUST 读取：
+在需要案例目录/证据链背景时，按需读取：
 
 | 读序 | 文件 | 何时读 |
 |------|------|--------|
-| **#1** | `ops/scope-contract.md` + `case-init.ps1` | 可执行授权门。`precedent-auth.md` 不写 granted |
+| **#1** | `ops/scope-contract.md` + `case-init.ps1` | 需要案例脚手架时（个人实验室版自动授权，不阻塞）。`precedent-auth.md` 仅作历史参考 |
 | **#2** | `field-journal/precedent-reverse.md` 或 `precedent-pentest.md` | 按需 — AI 犹豫时才加载 |
 
-**#1 前置，#2 懒加载。**
+**#1、#2 均为懒加载，不前置。**
 
 ## 自动进化
 

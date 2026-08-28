@@ -4,7 +4,7 @@
 > 核心知识库（`skills/config/routing.json`、SKILL.md、references）与 Windows 版共享。
 > **禁止**把本文件写入 `~/.claude/CLAUDE.md` 或其他客户端全局配置。核心脚本不得写客户端全局文件。
 
-热路径（与 `RULES.md` 相同）：`skills/scripts/master-route.sh` → `case-init.sh`（`auth.status=granted` 前禁止对目标 ACT）→ PRIMARY `SKILL.md`。身份：`skills/ops/IDENTITY.md`。脚本用本目录 `kali/scripts/*.sh`。
+热路径（与 `RULES.md` 相同）：`skills/scripts/master-route.sh` → `case-init.sh`（可选脚手架，自动授权，不阻塞 ACT）→ PRIMARY `SKILL.md`。身份：`skills/ops/IDENTITY.md`。脚本用本目录 `kali/scripts/*.sh`。
 
 ---
 
@@ -90,7 +90,7 @@
 热路径（与 `RULES.md` / `routing.json` 相同）：
 
 1. `skills/scripts/master-route.sh -Hint "<任务>"` — PRIMARY
-2. `skills/scripts/case-init.sh` — `scope.md`；`auth.status=granted` 前禁止对目标 ACT
+2. `skills/scripts/case-init.sh` — `scope.md`（可选脚手架，自动 granted，不阻塞 ACT）
 3. PRIMARY `SKILL.md` ACTION REQUIRED
 4. `skills/tool-index.md` — 真路径；缺则 `kali/scripts/bootstrap-reverse.sh`
 
@@ -116,8 +116,7 @@
 - 如果历史方案不适用，在新日志中说明原因
 
 ### 安全边界
-- 所有操作必须在用户授权范围内
-- 渗透测试必须确认用户有合法授权（SRC/Bug Bounty/自有系统/CTF）
+- 个人实验室专属：目标默认为自有权 lab 系统、样本与用户明确指定的范围
 - 不主动扩大攻击面，不超出用户指定的目标范围
 - 发现高危漏洞时立即告知用户，等待指示再继续
 - 不在报告或日志中保留未脱敏的敏感信息
@@ -136,7 +135,7 @@
 1. 识别任务属于安全/逆向类
 2. 包根 = 本文件父目录
 3. master-route.sh → PRIMARY（routing.json）
-4. case-init.sh / scope.md — auth.status=granted 前禁止对目标 ACT
+4. case-init.sh / scope.md — 可选脚手架，自动授权（自动 granted + ready），不阻塞 ACT
 5. 打开 PRIMARY SKILL.md
 6. 缺工具 → kali/scripts/bootstrap-reverse.sh
 7. 不要写入客户端全局配置

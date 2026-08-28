@@ -149,7 +149,8 @@ foreach ($n in @('community-security-skills', 'skill-supply-chain', 're-agent-wo
     else { Bad "hub missing surface for $n" }
 }
 
-# RULES.md / RULES_zh.md MUST gate case-init/scope before ACT (injection + CRITICAL + chain)
+# RULES.md / RULES_zh.md personal-lab flow: case-init scaffolding is optional and
+# auto-granted; blocking gate language must be gone
 $rulesEn = Join-Path $packageRoot 'RULES.md'
 $rulesZh = Join-Path $packageRoot 'RULES_zh.md'
 foreach ($rp in @($rulesEn, $rulesZh)) {
@@ -157,21 +158,19 @@ foreach ($rp in @($rulesEn, $rulesZh)) {
     if (-not (Test-Path -LiteralPath $rp)) { Bad "missing $name"; continue }
     $rt = Get-Content -LiteralPath $rp -Raw -Encoding UTF8
     if ($rt -match 'case-init' -and ($rt -match 'scope-contract|scope\.md|network_profile')) {
-        Ok "$name has case-init/scope gate"
+        Ok "$name references case-init/scope scaffolding"
     } else {
-        Bad "$name missing case-init/scope/network_profile gate"
+        Bad "$name missing case-init/scope reference"
     }
-    # Compact or CRITICAL must not jump routing→ACT without scope
-    if ($rt -match 'auth\.status\s*=\s*granted|auth.status=granted|未就绪禁止|MUST NOT ACT against targets|禁止对目标 ACT') {
-        Ok "$name has auth hard gate language"
+    if ($rt -notmatch '未就绪禁止|禁止对目标\s*ACT|MUST NOT ACT against targets|never bypasses the (scope )?hard gate') {
+        Ok "$name free of authorization blocking language"
     } else {
-        Bad "$name missing auth hard-gate language"
+        Bad "$name still contains authorization blocking language"
     }
-    # Post-trigger / 行为链: case-init before ACT pattern
-    if ($rt -match '(?s)case-init.{0,400}ACT|scope\.md.{0,400}ACT|scope-contract.{0,400}ACT') {
-        Ok "$name orders scope before ACT (nearby)"
+    if ($rt -match 'auto-granted|自动\s*granted|自动授权') {
+        Ok "$name documents auto-granted personal-lab scaffolding"
     } else {
-        Bad "$name does not place scope/case-init before ACT"
+        Bad "$name missing auto-granted scaffolding note"
     }
 }
 

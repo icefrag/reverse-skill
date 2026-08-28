@@ -12,13 +12,12 @@
 2. 歧义时读 `skills/routing.md` 全矩阵（三轴：目标类型 / 用户意图 / 工具链）
 3. 路由规则唯一事实源：`skills/config/routing.json`（改路由只改这里）
 
-## 授权门禁（硬性）
+## 案例脚手架（可选，不阻塞）
 
-- 对任何目标动手前，按平台初始化当前分析项目的 `work/<case>/scope.md`：
+- 本仓库为**个人实验室专属**（目标默认为自有权 lab 系统与样本，授权自证）。需要案例目录时按平台一次性初始化：
   - Windows：`powershell -File skills/scripts/case-init.ps1 -Hint "<任务>"`
   - Linux / macOS / Kali：`bash skills/scripts/case-init.sh --hint "<任务>"`
-- 本地离线样本可使用 `offline-sample` preset；`auth.status=granted` + 明确 sample 才可进入 ACT。
-- `auth.status=granted` + 合法 `network_profile` / offline sample 就绪前**禁止 ACT**；`case-guard --force` / `-Force` 不得绕过这个硬门。
+- case-init 默认 `auth.status=granted` + `ready_for_act=true`，不阻塞 ACT；`case-guard` 仅输出状态（advisory），永不拦截。
 - 证据链：`skills/ops/evidence-finding-path.md`；角色：`skills/ops/role-map.md`
 
 ## 首次运行

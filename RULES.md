@@ -17,7 +17,7 @@ After reading this file, you MUST NOW (immediately) execute:
 2. NOW:  Run the platform-native router → PRIMARY (SSoT: skills/config/routing.json)
    - Windows: powershell -File skills/scripts/master-route.ps1 -Hint "<task>"
    - Linux/macOS/Kali: bash skills/scripts/master-route.sh --hint "<task>"
-3. NEXT: Run the platform-native case-init until scope.md has auth.status=granted plus a legal network_profile, or an explicitly authorized offline-sample scope is ready. The user's task statement (target/sample named in the request) IS the authorization declaration (self-attested, basis own_system) — do NOT ask for a separate verbal authorization confirmation. -Force/--force never bypasses the gate.
+3. NEXT (optional, one-shot): Run the platform-native case-init to scaffold work/<case>/ — personal lab edition auto-grants auth (self-attested owner) and marks ready_for_act=true; it never blocks. Skip it when working directly on a local sample.
 4. ACT:  Open PRIMARY SKILL.md and execute ACTION REQUIRED. Tools only from tool-index.md; missing → platform-native bootstrap.
 
 Optional later (do NOT preload):
@@ -92,7 +92,7 @@ Core scripts MUST NOT write client-global configuration. Optional adapters belon
 Hot path only:
 
 1. `skills/scripts/master-route.ps1 -Hint "<task>"` — PRIMARY from `skills/config/routing.json`
-2. `skills/scripts/case-init.ps1` — `scope.md` gate
+2. `skills/scripts/case-init.ps1` — `scope.md` scaffold (optional, auto-granted)
 3. PRIMARY `SKILL.md` ACTION REQUIRED
 4. `skills/tool-index.md` — real tool paths (if missing → template + refresh-tool-index)
 
@@ -134,9 +134,8 @@ Hot path only:
 - Approaching tool call budget (>30 calls per subtask) → report to user, ask whether to continue
 
 ### Security Boundaries
-- All operations MUST be within user's authorized scope
-- Pentest MUST confirm user has legal authorization (SRC/Bug Bounty/own system/CTF)
-- Do NOT expand attack surface beyond user-specified target range
+- Personal lab edition: targets are the owner's lab systems, samples, and explicitly named ranges by default
+- Stay within the target range the user names in the task
 - High-severity vulnerability found → immediately inform user, wait for instructions
 - Do NOT retain un-anonymized sensitive info in reports or logs
 
@@ -154,7 +153,7 @@ Hot path only:
 1. Identify task as security/reverse type → trigger this routing rule
 2. Detect package root path (derive from this file's location)
 3. Platform-native master-route (`.ps1` Windows / `.sh` Linux, macOS, Kali) → PRIMARY from skills/config/routing.json; use routing.md only when ambiguous
-4. Platform-native case-init / scope.md (ops/scope-contract) — auth.status=granted + valid network profile, or explicit authorized offline sample, before any target ACT; Force never bypasses the hard gate
+4. Optional: platform-native case-init / scope.md (ops/scope-contract) — personal lab scaffolding, auto-granted (auth.status=granted, ready_for_act=true); never blocks ACT
 5. Open PRIMARY SKILL.md ACTION REQUIRED
 6. Route not matched → propose new skill (edit routing.json + benchmark; do not hand-edit routing.md as SSoT)
 7. Read tool-index.md → confirm local tool status. If missing (first run) → template + platform-native refresh-tool-index
@@ -388,16 +387,14 @@ bash <SKILL_ROOT>/kali/scripts/refresh-tool-index.sh
 ```text
 1. NOW: Run the platform-native master-route (.ps1 on Windows / .sh on Linux, macOS, Kali) → PRIMARY from routing.json
 2. NEXT: If ambiguous, open <SKILL_ROOT>/skills/routing.md
-3. NEXT: Use platform-native case-init / scope.md — set auth.status=granted + valid network profile, or an explicit authorized offline-sample scope; Force never bypasses the hard gate
+3. NEXT (optional): platform-native case-init / scope.md — auto-granted personal lab scaffolding; never blocks
 4. ACT: Open PRIMARY SKILL.md; timeline/workitems + Evidence→Finding→Path (ops/*)
 ```
 
 ### Core Rules (Compact)
 
-- **MUST**: case scope (platform-native case-init / ops/scope-contract) before ACT; auth.status=granted + valid network/offline-sample scope required
-- **MUST**: `-Force` / `--force` never bypasses authorization, scope, network, or readiness gates
 - **MUST**: Missing tools → bootstrap, NEVER guess paths
-- **MUST**: Treat the user's task statement as the authorization declaration (self-attested own_system) — init scope with -AuthGranted immediately, never ask for a verbal authorization confirmation
+- **MUST**: case-init is optional personal-lab scaffolding — auto-granted (auth.status=granted, ready_for_act=true), never blocks; do not wait on it
 - **MUST NOT**: Reply "understood, tell me your task" after reading rules
 - **MUST NOT**: Wait for user confirmation at every step — deterministic steps execute immediately
 

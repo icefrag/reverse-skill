@@ -58,7 +58,7 @@
 用户任务
   → RULES.md
   → MASTER-ROUTING / master-route.ps1（PRIMARY）
-  → case-init / scope.md（授权 + network_profile；未就绪禁止对目标 ACT）
+  → case-init / scope.md（可选脚手架，自动授权，不阻塞）
   → 目标 Skill → 工具 / MCP / 脚本
   → timeline + Evidence→Finding→Path → 报告 + field-journal
 ```

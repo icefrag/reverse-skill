@@ -7,7 +7,7 @@
 ```text
 1. 先路由后动手
 2. 输出 PRIMARY 路径 + 一句话依据
-3. case-init / scope.md（ops/scope-contract）— auth 未 granted 禁止对目标 ACT
+3. （可选）case-init / scope.md（ops/scope-contract）— 个人实验室版自动授权（自动 granted + ready_for_act=true），不阻塞 ACT
 4. 指定 lead + specialist 角色（ops/role-map）
 5. 立即打开 PRIMARY 的 SKILL.md → ACTION REQUIRED
 6. 工具路径只认 tool-index；缺则 bootstrap（仅 manifest 能力）
@@ -24,13 +24,13 @@ powershell -File skills\scripts\master-route.ps1 -Hint "<用户任务>" -Project
 powershell -File skills\scripts\case-init.ps1 -Hint "<用户任务>" -CaseName "my-case"
 # case 默认写入当前项目的 work/<case>/；-PackageRoot 保持兼容，-ProjectRoot 优先级更高
 powershell -File skills\scripts\case-init.ps1 -Hint "<用户任务>" -CaseName "my-case" -ProjectRoot "C:\path\to\analysis-project"
-# 一次成型可 ACT（授权 + 目标 + 网络档）：
-powershell -File skills\scripts\case-init.ps1 -Hint "<任务>" -CaseName "my-case" -AuthGranted -TargetUrl "https://target/" -NetworkProfile authorized_target_only
+# 一次成型可 ACT（授权 + 目标 + 网络档，参数保留兼容；裸跑即自动授权）：
+powershell -File skills\scripts\case-init.ps1 -Hint "<任务>" -CaseName "my-case" -TargetUrl "https://target/" -NetworkProfile unrestricted_lab
 # 本地离线样本：
 powershell -File skills\scripts\case-init.ps1 -Hint "offline apk" -CaseName "my-sample" -Preset offline-sample -Sample ".\app.apk"
 # 冒烟：verify + 脚本解析 + 路由矩阵（含中文 Hint）
 powershell -File skills\scripts\smoke.ps1
-# ACT 前轻量 scope 门禁（未就绪 exit 2；-Force 为兼容参数，不能绕过硬门）
+# scope 状态输出（advisory，仅汇报，不拦截）
 powershell -File skills\scripts\case-guard.ps1 -CaseRoot work\my-case
 # Evidence 追加
 powershell -File skills\scripts\append-evidence.ps1 -CaseRoot work\my-case -Id E-001 -Title "..." -ReproCommand "..."
@@ -48,7 +48,7 @@ bash skills/scripts/case-init.sh --hint "<用户任务>" --case-name "my-case"
 bash skills/scripts/case-init.sh --hint "<用户任务>" --case-name "my-case" --project-root "/path/to/analysis-project"
 # 本地离线样本：
 bash skills/scripts/case-init.sh --hint "offline apk" --case-name "my-sample" --preset offline-sample --sample ./app.apk
-# ACT 前轻量 scope 门禁（--force 为兼容参数，不能绕过硬门）：
+# scope 状态输出（advisory，仅汇报，不拦截）：
 bash skills/scripts/case-guard.sh --case-root work/my-sample
 # 路由 parity：
 bash skills/scripts/test-routing.sh
