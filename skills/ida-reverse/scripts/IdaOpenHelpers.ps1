@@ -36,47 +36,62 @@ function Get-IdaMcpKeepaliveDir {
 }
 
 function Get-IdaMcpLastHealthyPath {
-    return Join-Path (Get-IdaMcpKeepaliveDir) 'last-healthy.txt'
+    param([int]$Port = 13337)
+    return Join-Path (Get-IdaMcpKeepaliveDir) ("last-healthy-{0}.txt" -f $Port)
 }
 
 function Get-IdaMcpOpeningLockPath {
-    return Join-Path (Get-IdaMcpKeepaliveDir) 'opening.lock'
+    param([int]$Port = 13337)
+    return Join-Path (Get-IdaMcpKeepaliveDir) ("opening-{0}.lock" -f $Port)
 }
 
 function Write-IdaMcpLastHealthy {
-    Set-Content -LiteralPath (Get-IdaMcpLastHealthyPath) -Value 'ok' -Encoding ASCII
+    param([int]$Port = 13337)
+    Set-Content -LiteralPath (Get-IdaMcpLastHealthyPath -Port $Port) -Value 'ok' -Encoding ASCII
 }
 
 function Read-IdaMcpLastHealthy {
-    $path = Get-IdaMcpLastHealthyPath
+    param([int]$Port = 13337)
+    $path = Get-IdaMcpLastHealthyPath -Port $Port
     if (-not (Test-Path -LiteralPath $path)) { return $null }
     return (Get-Item -LiteralPath $path).LastWriteTime
 }
 
 function Set-IdaMcpOpeningLock {
-    param([int]$TtlSeconds = 600)
+    param(
+        [int]$Port = 13337,
+        [int]$TtlSeconds = 600
+    )
     $ttl = [Math]::Max(1, $TtlSeconds)
     $until = (Get-Date).AddSeconds($ttl).ToString('o')
-    Set-Content -LiteralPath (Get-IdaMcpOpeningLockPath) -Value $until -Encoding ASCII
+    Set-Content -LiteralPath (Get-IdaMcpOpeningLockPath -Port $Port) -Value $until -Encoding ASCII
 }
 
 function Clear-IdaMcpOpeningLock {
-    $path = Get-IdaMcpOpeningLockPath
+    param([int]$Port = 13337)
+    $path = Get-IdaMcpOpeningLockPath -Port $Port
     if (Test-Path -LiteralPath $path) {
         Remove-Item -LiteralPath $path -Force -ErrorAction SilentlyContinue
     }
 }
 
 function Test-IdaMcpOpeningInFlight {
-    param([datetime]$Now = (Get-Date))
-    $path = Get-IdaMcpOpeningLockPath
+    param(
+        [int]$Port = 13337,
+        [datetime]$Now = (Get-Date)
+    )
+    $path = Get-IdaMcpOpeningLockPath -Port $Port
     if (-not (Test-Path -LiteralPath $path)) { return $false }
     $raw = (Get-Content -LiteralPath $path -Raw -ErrorAction SilentlyContinue)
-    if ([string]::IsNullOrWhiteSpace($raw)) { return $true }
+    if ([string]::IsNullOrWhiteSpace($raw)) {
+        Remove-Item -LiteralPath $path -Force -ErrorAction SilentlyContinue
+        return $false
+    }
     try {
         $until = [datetime]::Parse($raw.Trim(), $null, [System.Globalization.DateTimeStyles]::RoundtripKind)
     } catch {
-        return $true
+        Remove-Item -LiteralPath $path -Force -ErrorAction SilentlyContinue
+        return $false
     }
     if ($Now -gt $until) {
         Remove-Item -LiteralPath $path -Force -ErrorAction SilentlyContinue

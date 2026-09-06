@@ -89,25 +89,28 @@ function Test-IdaGuiProcess {
 }
 
 function Test-DeadlockedSupervisor {
-    param([int[]]$Owners)
+    param(
+        [int[]]$Owners,
+        [int]$Port
+    )
     $gui = @($Owners | Where-Object { Test-IdaGuiProcess -ProcessId $_ })
     if ($gui.Count -gt 0) { return $false }
     return Test-IdaMcpKeepaliveDeadlockFromFacts `
         -GuiOwnsPort $false `
-        -OpeningInFlight (Test-IdaMcpOpeningInFlight) `
-        -LastHealthy (Read-IdaMcpLastHealthy) `
+        -OpeningInFlight (Test-IdaMcpOpeningInFlight -Port $Port) `
+        -LastHealthy (Read-IdaMcpLastHealthy -Port $Port) `
         -Now (Get-Date)
 }
 
 $probe = Probe-IdaMcp -Port $Port
 if ($probe.Status -eq 'healthy') {
-    Write-IdaMcpLastHealthy
+    Write-IdaMcpLastHealthy -Port $Port
     Write-WatchLog "OK:$($probe.Count)`:reuse"
     exit 0
 }
 if ($probe.Status -eq 'busy') {
     $owners = @($probe.Owners)
-    if (Test-DeadlockedSupervisor -Owners $owners) {
+    if (Test-DeadlockedSupervisor -Owners $owners -Port $Port) {
         Write-WatchLog ("INFO:deadlock pids={0}, calling start.ps1 -Force" -f ($owners -join ','))
         $startScript = Join-Path $PSScriptRoot 'start.ps1'
         $startOutput = & $startScript -Port $Port -Force

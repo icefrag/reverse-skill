@@ -230,7 +230,7 @@ $bodyObj = @{
 }
 $body = $bodyObj | ConvertTo-Json -Depth 12 -Compress
 
-Set-IdaMcpOpeningLock -TtlSeconds ($TimeoutSeconds + 60)
+Set-IdaMcpOpeningLock -Port $Port -TtlSeconds ($TimeoutSeconds + 60)
 
 $openJob = Start-Job -ScriptBlock {
     param($RequestBody, $RequestPort)
@@ -370,7 +370,7 @@ try {
     Write-Output "ERR:$err"
     exit 1
 } finally {
-    Clear-IdaMcpOpeningLock
+    Clear-IdaMcpOpeningLock -Port $Port
     if ($openJob) {
         Stop-Job -Job $openJob -ErrorAction SilentlyContinue
         Remove-Job -Job $openJob -Force -ErrorAction SilentlyContinue

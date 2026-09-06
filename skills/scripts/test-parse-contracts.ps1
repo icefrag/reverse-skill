@@ -84,6 +84,32 @@ if (Test-IdaMcpKeepaliveDeadlockFromFacts -GuiOwnsPort $false -OpeningInFlight $
     Ok 'stale last-healthy is deadlock'
 } else { Bad 'tools/list unhealthy >180s should be deadlock' }
 
+$oldLocalAppData = $env:LOCALAPPDATA
+$keepaliveTmp = Join-Path $tmp 'keepalive-state'
+$env:LOCALAPPDATA = $keepaliveTmp
+try {
+    Set-IdaMcpOpeningLock -Port 13337 -TtlSeconds 60
+    if ((Test-IdaMcpOpeningInFlight -Port 13337) -and -not (Test-IdaMcpOpeningInFlight -Port 13338)) {
+        Ok 'opening lock is isolated per port'
+    } else {
+        Bad 'opening lock leaked across ports'
+    }
+    Write-IdaMcpLastHealthy -Port 13337
+    if ((Read-IdaMcpLastHealthy -Port 13337) -and -not (Read-IdaMcpLastHealthy -Port 13338)) {
+        Ok 'last-healthy state is isolated per port'
+    } else {
+        Bad 'last-healthy state leaked across ports'
+    }
+    Set-Content -LiteralPath (Get-IdaMcpOpeningLockPath -Port 13339) -Value 'corrupt' -Encoding ASCII
+    if (-not (Test-IdaMcpOpeningInFlight -Port 13339)) {
+        Ok 'corrupt opening lock fails closed and is cleared'
+    } else {
+        Bad 'corrupt opening lock blocks recovery forever'
+    }
+} finally {
+    $env:LOCALAPPDATA = $oldLocalAppData
+}
+
 $recover = Get-Content -LiteralPath $idaFiles['recover.ps1'] -Raw -ErrorAction SilentlyContinue
 if ($recover -match '(?i)start\.ps1' -and $recover -match '-Force') {
     Ok 'recover.ps1 calls start.ps1 -Force'

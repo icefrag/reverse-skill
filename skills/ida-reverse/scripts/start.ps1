@@ -349,15 +349,15 @@ if ($guiOwners.Count -gt 0) {
 
 if (-not $Force) {
     if ($probe.Status -eq 'healthy') {
-        Write-IdaMcpLastHealthy
+        Write-IdaMcpLastHealthy -Port $Port
         Write-Output "OK:$($probe.Count)`:reuse"
         exit 0
     }
     if ($probe.Status -eq 'busy') {
         $deadlock = Test-IdaMcpKeepaliveDeadlockFromFacts `
             -GuiOwnsPort $false `
-            -OpeningInFlight (Test-IdaMcpOpeningInFlight) `
-            -LastHealthy (Read-IdaMcpLastHealthy) `
+            -OpeningInFlight (Test-IdaMcpOpeningInFlight -Port $Port) `
+            -LastHealthy (Read-IdaMcpLastHealthy -Port $Port) `
             -Now (Get-Date)
         if (-not $deadlock) {
             Write-Output ("WARN:busy:port={0} pid={1}" -f $Port, ($probe.Owners -join ','))
@@ -505,7 +505,7 @@ for ($i = 0; $i -lt $WaitSeconds; $i++) {
     Start-Sleep -Seconds 1
     $toolCount = Test-IdaMcpHealth -Port $Port
     if ($toolCount -gt 0) {
-        Write-IdaMcpLastHealthy
+        Write-IdaMcpLastHealthy -Port $Port
         Write-Output "OK:$toolCount"
         $ready = $true
         break
