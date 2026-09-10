@@ -1,6 +1,6 @@
 # examples/ctf-demo — 完整流程示例
 
-> 本目录演示 reverse-skill 的标准作业流：**路由 → 授权门禁 → 时间线 → 证据链 → 报告**。
+> 本目录演示 reverse-skill 的标准作业流：**路由 → scope → 时间线 → 证据链 → 报告**。
 > 内容为虚构示例（CTF 靶场），仅用于展示工作方式。
 
 ## 流程演示
@@ -8,7 +8,7 @@
 ```text
 1. 用户任务："分析这个 CTF pwn 题，栈溢出 gets"
 2. 路由：master-route.ps1 -Hint "CTF pwn 栈溢出" → PRIMARY R17 (pwn-chain)
-3. 授权：case-init.ps1 -Hint ... -CaseName ctf-demo -AuthGranted → scope.md
+3. scope：case-init.ps1 -Hint ... -CaseName ctf-demo → scope.md（自动 granted）
 4. 执行：时间线追加 + 证据 E-001/E-002 + workitems 更新
 5. 产出：报告（docs-generator）+ field-journal 脱敏沉淀
 ```
@@ -26,7 +26,7 @@
 ## 真实使用
 
 ```powershell
-# 初始化真实 case（授权目标）
+# 初始化真实 case
 powershell -NoProfile -ExecutionPolicy Bypass -File skills/scripts/case-init.ps1 `
   -Hint "你的任务" -CaseName my-case -AuthGranted -TargetUrl "https://target/" `
   -NetworkProfile authorized_target_only

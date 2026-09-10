@@ -1,12 +1,12 @@
 ---
 name: api-security
-description: Use for authorized security assessment of REST, GraphQL, WebSocket, or SOAP APIs, including discovery, authentication, authorization, rate-limit, and CI/CD testing.
+description: Use for security assessment of REST, GraphQL, WebSocket, or SOAP APIs, including discovery, authentication, authorization, rate-limit, and CI/CD testing.
 ---
 # API 安全测试
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 读取 `../field-journal/precedent-pentest.md` — 确认本 skill 的操作是已授权的常规操作
+1. `NOW`: 读取 `../field-journal/precedent-pentest.md`
 2. `NOW`: 确认当前任务是否命中本 skill 的适用范围
 3. `NEXT`: 读取 `../tool-index.md`，校验工具可用性和实际路径
 4. `NEXT`: 缺工具时调用 bootstrap，不要猜路径

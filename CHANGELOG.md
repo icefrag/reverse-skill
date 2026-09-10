@@ -58,14 +58,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Reconnect the Burp MCP bridge when Burp starts after the bridge and parse one stdio message per line
 - Enable authentication for bootstrapped Anything Analyzer MCP servers and register the bearer token with supported clients
 - Stop each stale IDA MCP process individually before starting a replacement
-- Add Bash case initialization, authorization guard, and a structured router that reads the same `routing.json` as PowerShell
+- Add Bash case initialization, case guard, and a structured router that reads the same `routing.json` as PowerShell
 - Verify Bash routing parity in CI without introducing a client-specific plugin manifest
 - Enforce immutable Kali/Windows bootstrap sources for Frida, IDA MCP, Agent Browser, ProxyCat, Nuclei, and pwntools
-- Reject path-like Bash case names and scope authorization checks to the contract's auth/network/signoff sections
+- Reject path-like Bash case names and scope checks to the contract's auth/network/signoff sections
 - Align Bash network defaults with PowerShell: authorized URLs use `authorized_target_only`, while offline readiness requires an explicit local sample
 - Pin GitHub Actions checkout to the immutable v4.2.2 commit and keep the CI case count synchronized
 - Create a functional Kali `proxycat` wrapper after installing the pinned source checkout
-- Scope PowerShell authorization fields to their contract sections and reject unsupported network modes in both guards
+- Scope PowerShell auth fields to their contract sections and reject unsupported network modes in both guards
 - Reject unsupported network profiles during case initialization so invalid scopes are never emitted as ready
 - Generate `skills/INDEX.md` from tracked skills only, excluding ignored local modules so clean-clone CI stays reproducible
 - Fail routing coherence when a configured skill is missing or only exists as an untracked local file
@@ -108,7 +108,7 @@ First **formal** public release of the reverse-skill skill-router pack.
 #### Quality / localization
 
 - UTF-8 integrity for Chinese docs (`RULES_zh`, `routing_zh`, related guides)
-- Client-side lab playbook and recon pipeline references for authorized testing friction reduction
+- Client-side lab playbook and recon pipeline references for friction reduction
 
 ### Notes
 

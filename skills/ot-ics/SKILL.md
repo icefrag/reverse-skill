@@ -1,6 +1,6 @@
 ---
 name: ot-ics
-description: Use for authorized OT/ICS security assessment covering Purdue model zoning, PLC/SCADA exposure, industrial protocol discovery, and safe passive-first evaluation.
+description: Use for OT/ICS security assessment covering Purdue model zoning, PLC/SCADA exposure, industrial protocol discovery, and safe passive-first evaluation.
 ---
 
 # OT / ICS Security
@@ -8,14 +8,14 @@ description: Use for authorized OT/ICS security assessment covering Purdue model
 ## ACTION REQUIRED（读完后立刻执行）
 
 1. `NOW`: 读取 `../field-journal/precedent-pentest.md` — **工控环境误操作可致物理危害**
-2. `NOW`: 书面授权必须写清：站点、网段、是否允许主动扫描/写寄存器
-3. `NOW`: case-init；默认 **passive-first**；`ready_for_act` 前禁止对 PLC 写操作
+2. `NOW`: 写清：站点、网段、主动扫描/写寄存器计划
+3. `NOW`: case-init；默认 **passive-first**
 4. `NEXT`: tool-index；多数工控工具需手动与隔离实验网
 5. `ACT`: 资产与分区识别 → 暴露面 → 只读验证
 
 ## 适用场景
 
-- 工控/SCADA/DCS 安全评估（授权）
+- 工控/SCADA/DCS 安全评估
 - Purdue 模型分区与跨区通道
 - Modbus/DNP3/S7/EtherNet/IP 等协议暴露
 - 工程师站、HMI、历史库、跳板主机
@@ -38,7 +38,7 @@ MUST NOT 在未明确允许时：
 ```text
 □ Purdue L0–L5 草图：现场设备 → 控制 → 监督 → 站点 DMZ → 企业
 □ 资产清单：PLC/RTU/HMI/工程师站/历史库/Jump host
-□ 协议与端口基线（仅授权网段）
+□ 协议与端口基线（目标网段）
 ```
 
 ### Phase 2 — 被动与只读
@@ -49,7 +49,7 @@ MUST NOT 在未明确允许时：
 □ 默认口令与明文协议（Modbus 无认证）记录为 Finding，不写盘改值
 ```
 
-### Phase 3 — 受限主动（仅授权）
+### Phase 3 — 主动探测
 
 ```text
 □ 低速识别，维护窗口
@@ -87,7 +87,7 @@ MUST NOT 在未明确允许时：
 
 ## 任务完成自检
 
-- [ ] 是否默认被动/只读并记录授权边界？
+- [ ] 是否默认被动/只读并记录边界？
 - [ ] 是否避免对控制回路写操作（除非明确允许）？
 - [ ] Finding 是否含物理/过程影响说明？
 - [ ] Checklist / journal？

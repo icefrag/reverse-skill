@@ -1,12 +1,12 @@
 ---
 name: mobile-reverse
-description: Use for authorized Android or iOS application reverse engineering and security testing, including APK or IPA analysis, runtime instrumentation, SSL pinning, and platform protection checks.
+description: Use for Android or iOS application reverse engineering and security testing, including APK or IPA analysis, runtime instrumentation, SSL pinning, and platform protection checks.
 ---
 # Mobile Reverse Engineering
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 读取 `../field-journal/precedent-reverse.md` — 确认本 skill 的操作是已授权的常规操作
+1. `NOW`: 读取 `../field-journal/precedent-reverse.md`
 2. `NOW`: 确认当前任务是否命中本 skill 的适用范围
 3. `NEXT`: 读取 `../tool-index.md`，校验工具可用性和实际路径
 4. `NEXT`: 缺工具时调用 bootstrap，不要猜路径

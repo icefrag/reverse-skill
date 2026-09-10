@@ -70,7 +70,7 @@ python3 skills/case-review/scripts/review_case.py work/<case> --verify-hashes --
 | `ops/skill-supply-chain.md` | 安装外部 skill/MCP 的安全门闩 |
 | `references/community-security-skills.md` | 社区 skill 生态（借鉴不并库） |
 | `reverse-engineering/references/re-agent-workflow.md` | RE：triage→static→dynamic→synthesis |
-| `pentest-tools/references/recon-pipeline.md` | 授权侦察流水线 + 证据门 |
+| `pentest-tools/references/recon-pipeline.md` | 侦察流水线 + 证据门 |
 
 ## 优先级（高 → 低）
 

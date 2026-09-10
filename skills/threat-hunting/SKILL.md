@@ -7,7 +7,7 @@ description: Use for blue-team threat hunting, detection engineering with Sigma/
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 确认蓝队/狩猎授权与数据源范围（SIEM、EDR 导出）
+1. `NOW`: 确认蓝队/狩猎数据源范围（SIEM、EDR 导出）
 2. `NOW`: 明确假说（hypothesis）再查数，避免无脑刷告警
 3. `NEXT`: 工具与数据接入方式
 4. `ACT`: 假说 → 查询 → 验证 → 规则化
@@ -50,7 +50,7 @@ description: Use for blue-team threat hunting, detection engineering with Sigma/
 ### 4. 验证
 
 ```text
-□ 原子测试（Atomic Red Team）仅在授权实验室
+□ 原子测试（Atomic Red Team）在本地实验室
 □ 回放历史日志验证召回
 ```
 
@@ -74,7 +74,6 @@ description: Use for blue-team threat hunting, detection engineering with Sigma/
 
 **上游**: MASTER R27  
 **下游**: 确认入侵 → forensics；恶意样本 → malware-analysis  
-**MUST NOT**: 在无授权生产环境跑攻击模拟
 
 ## 任务完成自检
 

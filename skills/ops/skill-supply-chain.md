@@ -21,7 +21,7 @@
 
 | 风险类 | 表现 | 本包控制 |
 |--------|------|----------|
-| 恶意/投毒 skill | 诱导 exfil、写 memory/后门 | 只信本仓库 + 用户书面授权的外源；外源先人工读 SKILL.md 与 scripts |
+| 恶意/投毒 skill | 诱导 exfil、写 memory/后门 | 只信本仓库 + 用户指定的外源；外源先人工读 SKILL.md 与 scripts |
 | 权限过度 | 无差别 `curl \| bash`、全盘读 | bootstrap 仅 manifest 能力；scope `network_profile` |
 | 依赖投毒 | pip/npm 恶意包 | 优先官方 release；记录版本到 tool-index |
 | MCP 盲信 | 未审计 MCP 服务器 | tool-index 注册状态 + 端口探测；不默认信任远程 MCP |

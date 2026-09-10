@@ -1,6 +1,6 @@
 ---
 name: macos-reverse
-description: Use for authorized macOS and Mach-O reverse engineering including codesign, Objective-C/Swift recovery, endpoint security surfaces, and Apple platform malware analysis.
+description: Use for macOS and Mach-O reverse engineering including codesign, Objective-C/Swift recovery, endpoint security surfaces, and Apple platform malware analysis.
 ---
 
 # macOS / Mach-O Reverse Engineering

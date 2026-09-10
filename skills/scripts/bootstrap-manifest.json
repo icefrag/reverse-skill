@@ -103,7 +103,7 @@
       "canAutoInstall": true,
       "verifyCommand": "npx",
       "pinnedVersion": "1.0.1",
-      "note": "Requires the separately installed Reqable desktop application. The MCP server uses Reqable's local API; scope and authorization rules still apply to captured or replayed traffic."
+      "note": "Requires the separately installed Reqable desktop application. The MCP server uses Reqable's local API for captured or replayed traffic."
     },
     {
       "name": "jshookmcp",

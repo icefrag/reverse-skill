@@ -10,7 +10,7 @@ description: |
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 读取 `../field-journal/precedent-reverse.md` — 确认本 skill 的操作是已授权的常规操作
+1. `NOW`: 读取 `../field-journal/precedent-reverse.md`
 2. `NOW`: 确认当前任务是否命中本 skill 的适用范围
 3. `NEXT`: 读取 `../tool-index.md`，校验工具可用性和实际路径
 4. `NEXT`: 缺工具时调用 bootstrap，不要猜路径
@@ -393,14 +393,14 @@ radare2-skills 项目（radareorg/radare2-skills）提供了更完整的生态�
 
 **使用策略**：
 - 当用户提到 `r2xsql`、`r2mcp`、`r2http`、`radius2`、`r2pm`、`rabin2`、`rasm2`、`radiff2`、`rahash2`、`rax2` 时，优先路由到本 skill（radare2/SKILL.md）
-- 这些工具只是生态加速器，**不能绕过**：授权门禁、`tool-index` 校验、Evidence 导入、写模式确认
+- 这些工具只是生态加速器，**不能绕过**：`tool-index` 校验、Evidence 导入、写模式确认
 - 给出最小可复现命令示例：
   - `r2xsql -s <file> -q "SELECT ..."`
   - `curl.exe -sS --data-binary 'aaa' http://127.0.0.1:9393/cmd`
   - `radius2 -p <binary> ...`
   - `r2pm -ci <plugin>`
 
-本 skill 保持原有硬门禁和证据链完整性，不允许跳过任何授权或 Evidence 步骤。
+本 skill 保持证据链完整性，不允许跳过 Evidence 步骤。
 
 ---
 

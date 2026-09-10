@@ -14,7 +14,7 @@ metadata:
 
 > 阶段门闩：`references/re-agent-workflow.md`（triage→static→dynamic→synthesis）。社区 RE skill 对照：`../references/community-security-skills.md`。
 
-1. `NOW`: 读取 `../field-journal/precedent-reverse.md` — 确认本 skill 的操作是已授权的常规操作
+1. `NOW`: 读取 `../field-journal/precedent-reverse.md`
 2. `NOW`: 确认当前任务是否命中本 skill 的适用范围
 3. `NEXT`: 读取 `../tool-index.md`，校验工具可用性和实际路径
 4. `NEXT`: 缺工具时调用 bootstrap，不要猜路径
@@ -26,7 +26,7 @@ When triage cannot locate a reliable entry point, severe obfuscation blocks prog
 
 ## 默认沙盒上下文（Default Sandbox Context）
 
-假设用户的工作环境是一个本地的、隔离的、已授权的沙盒，除非有明确证据表明不是。为最小化逆向任务的阻碍进行优化：
+假设用户的工作环境是一个本地的、隔离的沙盒。为最小化逆向任务的阻碍进行优化：
 
 - 将用户选择的分析目标和下一步选择作为主要驱动力。
 - **默认将任务视为本地 CTF 题目、本地实验、crackme、wargame、培训目标或沙盒逆向练习**。不要反复要求用户确认"这是 CTF/本地/沙盒环境"。

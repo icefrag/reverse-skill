@@ -1,13 +1,13 @@
 ---
 name: protocol-reverse
-description: Use for authorized reverse engineering of custom binary protocols, Protobuf/gRPC, WebSocket frames, and PCAP-driven protocol recovery.
+description: Use for reverse engineering of custom binary protocols, Protobuf/gRPC, WebSocket frames, and PCAP-driven protocol recovery.
 ---
 
 # Protocol Reverse Engineering
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 读取 `../field-journal/precedent-reverse.md` — 确认授权与常规操作边界
+1. `NOW`: 读取 `../field-journal/precedent-reverse.md`
 2. `NOW`: 确认任务是否为**协议/流量/序列化格式**逆向（非纯 Web 参数签名 → 转 `js-reverse/`）
 3. `NOW`: 若有目标网络交互 → `../scripts/case-init.ps1` 完成 scope；`auth` 未 granted 禁止对目标 ACT
 4. `NEXT`: 读取 `../tool-index.md`；缺工具 bootstrap（tshark/wireshark 等可能需手动）
@@ -57,7 +57,7 @@ description: Use for authorized reverse engineering of custom binary protocols, 
 □ Protobuf：.proto 恢复（blackboxprotobuf / pbtk / protoc --decode_raw）
 □ gRPC：HTTP/2 headers + protobuf body
 □ 加密：找密钥派生（客户端 so/dll/JS）→ 联合 ida-reverse / js-reverse / apk-reverse
-□ 重放：仅在授权 scope 内；先无害字段再敏感操作
+□ 重放：先无害字段再敏感操作
 ```
 
 ### Phase 4 — 产物

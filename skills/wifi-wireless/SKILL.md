@@ -1,20 +1,20 @@
 ---
 name: wifi-wireless
-description: Use for authorized wireless security assessment including Wi-Fi capture, WPA handshake analysis, rogue AP detection research, and lab-only deauth testing.
+description: Use for wireless security assessment including Wi-Fi capture, WPA handshake analysis, rogue AP detection research, and lab-only deauth testing.
 ---
 
 # Wi-Fi / Wireless Security
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 读取 precedent-pentest；**无线攻击法律风险高**，必须书面授权与物理范围
-2. `NOW`: scope 写明目标 SSID/BSSID/场地；禁止扫邻居网络
+1. `NOW`: 读取 precedent-pentest；明确目标 SSID/BSSID 与物理范围
+2. `NOW`: scope 写明目标 SSID/BSSID/场地
 3. `NEXT`: 确认适配器监听模式能力
 4. `ACT`: 侦察 → 采集 → 分析（实验室优先）
 
 ## 适用场景
 
-- 授权 Wi-Fi 安全评估
+- Wi-Fi 安全评估
 - WPA/WPA2 握手采集与离线评估
 - 流氓 AP / 钓鱼热点检测研究
 - 企业无线隔离与门户安全

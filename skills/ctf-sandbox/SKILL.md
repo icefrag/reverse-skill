@@ -18,6 +18,6 @@ description: Thin PRIMARY for CTF / AWD / 靶场 multi-type orchestration. Hands
 
 ## 任务完成自检（声称完成前 MUST 通过）
 
-- [ ] 我是否先走了 case-init / scope，而不是把“用户说了 CTF”当成已授权外网？
+- [ ] 我是否先走了 case-init / scope，再开始做题？
 - [ ] 我是否打开了 sidecar orchestrator，而不是把 40 个子技能当 PRIMARY？
 - [ ] 若任务其实是 pwn/APK/IDA，我是否让更具体的 PRIMARY 接手？

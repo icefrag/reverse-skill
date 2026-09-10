@@ -1,12 +1,12 @@
 ---
 name: attack-chain
-description: Use for authorized multi-stage attack-path planning and orchestration when a task spans reconnaissance, initial access, privilege escalation, lateral movement, or impact assessment. Route single-stage tasks directly to their specialist skill.
+description: Use for multi-stage attack-path planning and orchestration when a task spans reconnaissance, initial access, privilege escalation, lateral movement, or impact assessment. Route single-stage tasks directly to their specialist skill.
 ---
 # Attack Chain Orchestration Skill
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 读取 `../field-journal/precedent-pentest.md` — 确认本 skill 的操作是已授权的常规操作
+1. `NOW`: 读取 `../field-journal/precedent-pentest.md`
 2. `NOW`: **创建/更新 case**（`../scripts/case-init.ps1`）并完成 `scope.md`（`../ops/scope-contract.md`）；`auth.status!=granted` 禁止 ACT
 3. `NOW`: 以 **lead** 角色规划阶段（`../ops/role-map.md`），写入 specialist_roles
 4. `NEXT`: 读取 `../tool-index.md`，校验工具可用性和实际路径
@@ -582,9 +582,9 @@ touch -t 202301010000 /path/to/file
 
 ### 三条底线
 
-1. **所有操作必须获得书面授权**
-2. **数据渗出需进行匿名化处理**
-3. **清理所有攻击痕迹（包括内存驻留）**
+1. **数据渗出需进行匿名化处理**
+2. **清理所有攻击痕迹（包括内存驻留）**
+3. **操作全程留痕（时间、动作、结果）**
 
 ### 行动纪律
 

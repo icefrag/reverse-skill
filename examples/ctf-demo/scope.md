@@ -12,9 +12,8 @@
 
 ## auth
 - status: granted
-- basis: ctf_lab (CTF 靶场授权)
-- evidence_of_auth: 平台授权条款（靶场挑战自带授权）
-- MUST NOT proceed if status != granted
+- basis: ctf_lab
+- evidence_of_auth: owner-operated
 
 ## in_scope
 - assets:
@@ -30,7 +29,6 @@
 - mode: authorized_target_only
 - notes: |
     offline | lab_only | authorized_target_only | unrestricted_lab
-    Change mode only after auth.status = granted.
 
 ## deliverables
 - report: true

@@ -58,7 +58,7 @@ description: Routes reverse engineering, exploitation, penetration testing, malw
 | **社区 skill 对照** | `references/community-security-skills.md` | 外部安全 skill 索引与借鉴规则（禁止盲装） |
 | **Skill 供应链** | `ops/skill-supply-chain.md` | 外部 skill/MCP 安装门闩（AST10 精简） |
 | **RE 阶段门闩** | `reverse-engineering/references/re-agent-workflow.md` | triage→static→dynamic→synthesis |
-| **授权侦察管线** | `pentest-tools/references/recon-pipeline.md` | scope 门 + 命中≠验证 |
+| **侦察管线** | `pentest-tools/references/recon-pipeline.md` | scope 契约 + 命中≠验证 |
 | **协议逆向** | `protocol-reverse/` | 自定义二进制协议 / Protobuf / gRPC / PCAP 帧布局 |
 | **Ghidra 逆向** | `ghidra-reverse/` | 开源反编译、headless、Ghidra MCP（无 IDA 时主入口） |
 | **Binary Ninja 逆向** | `binary-ninja-reverse/` | HLIL/MLIL/LLIL、Python API，以及可选的社区 MCP/localhost HTTP 集成 |
@@ -69,7 +69,7 @@ description: Routes reverse engineering, exploitation, penetration testing, malw
 | **威胁情报 / OSINT** | `threat-intelligence/` | 公开来源 IOC 补充、活动关联、独立核验与情报交接 |
 | **威胁狩猎** | `threat-hunting/` | 假说驱动狩猎、Sigma 检测工程、蓝队验证 |
 | **OT / ICS 工控** | `ot-ics/` | Purdue 分区、PLC/SCADA、被动优先评估 |
-| **Wi-Fi / 无线** | `wifi-wireless/` | 授权无线评估、握手/PMKID、实验室规则 |
+| **Wi-Fi / 无线** | `wifi-wireless/` | 无线评估、握手/PMKID、实验室规则 |
 | **浏览器扩展逆向** | `browser-extension-reverse/` | Chrome/Firefox 扩展、MV3 worker、权限面 |
 | **macOS / Mach-O** | `macos-reverse/` | 签名、ObjC/Swift、LaunchAgent、macOS 样本 |
 | **厚客户端** | `thick-client/` | 桌面 C/S、本地存储、IPC、更新通道 |
@@ -78,7 +78,7 @@ description: Routes reverse engineering, exploitation, penetration testing, malw
 | **数据库安全** | `database-security/` | MySQL/PG/MSSQL/Mongo/Redis 暴露与配置 |
 | **邮件安全** | `email-security/` | 钓鱼拆解、SPF/DKIM/DMARC、BEC |
 | **联邦身份** | `identity-federation/` | SAML/OIDC/OAuth SSO 流与错配 |
-| **RF / SDR** | `radio-sdr/` | 授权射频研究、默认只收 |
+| **RF / SDR** | `radio-sdr/` | 射频研究、默认只收 |
 
 ## 统一入口
 

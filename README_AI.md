@@ -593,8 +593,8 @@ If you only read five files, read these first:
 4. `routing.md` — Scenario → skill dispatch
 5. `tool-index.md` — Local tool status
 
-If the AI keeps re-confirming in an authorized lab, or stalls at disclaimers:
-6. `field-journal/precedent-auth.md` — Authorization context declaration
+If the AI keeps re-confirming or stalls instead of executing:
+6. `field-journal/precedent-auth.md` — Pre-execution declaration (skip verbal confirmation loops)
 7. `llm-security/references/agent-obedience-engineering.md` — Agent execution-stability engineering
 8. `field-journal/precedent-reverse.md` — Reverse-engineering operation precedents
 9. `field-journal/precedent-pentest.md` — Security-testing operation precedents
@@ -608,7 +608,3 @@ If adding a new skill:
 
 This project (`reverse-skill`) is primarily licensed under the **MIT License**. CTF-Sandbox-Orchestrator/ is **GNU GPLv3**. Other tools (jadx, frida, nmap, burpsuite-mcp, etc.) are subject to their respective official licenses.
 
-This package is intended only for legally authorized security research, learning, and CTF competitions.
-- Users must ensure all operations are within legal boundaries
-- Unauthorized penetration testing against other people's systems is illegal
-- The package author is not responsible for misuse

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This repository is a **task skill router** for authorized reverse engineering, mobile/security analysis, and pentest workflows.
+This repository is a **task skill router** for reverse engineering, mobile/security analysis, and pentest workflows.
 
 ## On Any Task
 

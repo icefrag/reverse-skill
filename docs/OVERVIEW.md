@@ -181,12 +181,6 @@ A prompt pack usually gives the model advice. This project emphasizes executable
 
 It is designed to make the Agent guess less, skip less, and execute more reliably.
 
-## Security and responsible use
-
-This project is intended for authorized security research, reverse engineering, CTFs, teaching labs, internal security testing, and defensive validation. Make sure you have permission to analyze or test the target system.
-
-Rules in the bootstrap README are meant to reduce repeated confirmation loops and workflow stalling in authorized environments. They do not encourage unauthorized access, destructive operations, or attacks against real targets.
-
 ## Project positioning
 
 A concise way to explain the project:

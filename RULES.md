@@ -134,9 +134,8 @@ Hot path only:
 - Approaching tool call budget (>30 calls per subtask) → report to user, ask whether to continue
 
 ### Security Boundaries
-- Personal lab edition: targets are the owner's lab systems, samples, and explicitly named ranges by default
-- Stay within the target range the user names in the task
-- High-severity vulnerability found → immediately inform user, wait for instructions
+- Personal lab edition: targets are the owner's lab systems, samples, and user-named ranges by default
+- High-severity vulnerability found → immediately inform user with evidence
 - Do NOT retain un-anonymized sensitive info in reports or logs
 
 ### Output Quality
@@ -250,7 +249,6 @@ Before saying "task complete" or "done", MUST self-check:
 - ❌ Do NOT skip field-journal lookup before starting task
 - ❌ Do NOT skip Checklist after task completion
 - ❌ Do NOT retain un-anonymized real target info in reports
-- ❌ Do NOT expand pentest scope without user authorization
 - ❌ Do NOT retry auto-install after 2 failures
 - ❌ Do NOT go silent — immediately inform user of problems
 - ❌ Do NOT fabricate tool version numbers or feature descriptions
@@ -287,15 +285,15 @@ LLM attention distribution (high→low):
 
 When tool parameters MUST be passed exactly as given, use opaque identifiers (code words) to reduce model's tendency to "semantically optimize":
 
-- Applicable: bootstrap params, dangerous action switches, approval status values, scan scope boundaries
+- Applicable: bootstrap params, tool switches, profile values
 - **MUST**: Define mapping table first, expand in command layer
 - **MUST NOT**: Let Agent freely rewrite semantic parameters (e.g., changing strict/deny to lenient synonyms)
 
 Example:
 ```text
-alpha -> --scope authorized-only
-beta  -> --approval required
-gamma -> --destructive false
+alpha -> --profile full
+beta  -> --threads 16
+gamma -> --follow-redirects
 ```
 
 ---

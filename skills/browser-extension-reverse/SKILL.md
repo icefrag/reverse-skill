@@ -1,6 +1,6 @@
 ---
 name: browser-extension-reverse
-description: Use for authorized reverse engineering of browser extensions (Chrome/Firefox) including manifest analysis, background workers, and extension-based credential or traffic logic recovery.
+description: Use for reverse engineering of browser extensions (Chrome/Firefox) including manifest analysis, background workers, and extension-based credential or traffic logic recovery.
 ---
 
 # Browser Extension Reverse Engineering

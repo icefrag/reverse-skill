@@ -1,6 +1,6 @@
 ---
 name: windows-ad
-description: Use for authorized Active Directory and Windows identity attacks including Kerberos, AD CS, BloodHound paths, NTLM relay, and domain privilege escalation research.
+description: Use for Active Directory and Windows identity attacks including Kerberos, AD CS, BloodHound paths, NTLM relay, and domain privilege escalation research.
 ---
 
 # Windows / Active Directory Security
@@ -8,8 +8,8 @@ description: Use for authorized Active Directory and Windows identity attacks in
 ## ACTION REQUIRED（读完后立刻执行）
 
 1. `NOW`: 读取 `../field-journal/precedent-pentest.md`
-2. `NOW`: **域/AD 测试必须明确授权范围**（含 DC、是否允许投毒/中继）
-3. `NOW`: case-init；network_profile 与禁止动作写清
+2. `NOW`: 域/AD 测试先明确 DC 与投毒/中继计划
+3. `NOW`: case-init；network_profile 写清
 4. `NEXT`: tool-index（impacket/certipy/bloodhound 等常手动）
 5. `ACT`: 从身份枚举与 BloodHound 图开始，不先上破坏性利用
 
@@ -31,7 +31,7 @@ description: Use for authorized Active Directory and Windows identity attacks in
 ### 1. 枚举
 
 ```bash
-# 示例 Impacket / 内置（需凭据与授权）
+# 示例 Impacket / 内置（需凭据）
 nxc smb <range> -u user -p pass
 bloodhound-python -d domain.local -u user -p pass -c All -ns <DC>
 ```
@@ -43,14 +43,14 @@ bloodhound-python -d domain.local -u user -p pass -c All -ns <DC>
 □ ACL 滥用（GenericAll/WriteDacl）
 □ 委派（非约束/约束/基于资源）
 □ AD CS 模板错误 → Certipy
-□ 中继：LLMNR/NBT-NS + ntlmrelayx（确认授权）
+□ 中继：LLMNR/NBT-NS + ntlmrelayx
 ```
 
 ### 3. 凭证与横向
 
 ```text
-□ secretsdump / lsassy / mimikatz（严格授权与清理）
-□ PtH / PtT / 黄金票仅在授权红队范围
+□ secretsdump / lsassy / mimikatz（注意清理痕迹）
+□ PtH / PtT / 黄金票
 □ 每步写 Evidence；高危等用户确认
 ```
 
@@ -61,7 +61,7 @@ bloodhound-python -d domain.local -u user -p pass -c All -ns <DC>
 | BloodHound / SharpHound | 路径图 |
 | Certipy | AD CS |
 | Impacket / NetExec | 横向与枚举 |
-| Rubeus / Mimikatz | 票据与凭证（授权） |
+| Rubeus / Mimikatz | 票据与凭证 |
 | Coercer / Responder | 强制认证 / 投毒 |
 
 ## 参考
@@ -75,7 +75,6 @@ bloodhound-python -d domain.local -u user -p pass -c All -ns <DC>
 
 **上游**: MASTER R24  
 **下游**: 报告 `docs-generator`；需 EDR 研究 `edr-bypass-re`  
-**MUST NOT**: 无授权 DCSync / 黄金票打生产
 
 ## 任务完成自检
 

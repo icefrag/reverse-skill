@@ -1,7 +1,5 @@
 # Unhook / 直接 / 间接 syscall 技术清单
 
-> 仅限授权红队 / 对抗演练 / 自有产品测试，禁止用于未授权目标。
-
 本文档汇总当前主流的"绕过用户态 hook"技术，从最经典的 unhook 到最新的 hardware breakpoint Blindside。
 所有技术都对照 MITRE ATT&CK T1562.001 / T1027 / T1055，便于报告输出。
 

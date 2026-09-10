@@ -783,7 +783,7 @@ Many CTF challenges stack multiple checks:
 
 > 检测类长文仍见 `malware-analysis/references/anti-analysis-techniques.md`；OLLVM 长流程见 `references/ollvm-deobfuscation.md`。  
 > 本节是 **触发 → 动作 → Evidence** 短菜谱，供 agent 在 Dynamic/Static 旁路选用。  
-> **授权隔离 lab 默认**；静态 patch / 改 PEB / 改返回值不是未授权目标上的默认动作。
+> 隔离 lab 默认；静态 patch / 改 PEB / 改返回值按任务需要选用。
 
 ### 使用规则
 

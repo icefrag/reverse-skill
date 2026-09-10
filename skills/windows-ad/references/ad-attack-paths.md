@@ -9,4 +9,4 @@
 | ACL → DA | GenericAll on user/group | BloodHound |
 | NTLM Relay | 签名未强制 | Responder + relay |
 
-始终：授权 → 枚举 → 路径评分 → 最小验证 → 清理。
+始终：枚举 → 路径评分 → 最小验证 → 清理。

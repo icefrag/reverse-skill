@@ -85,7 +85,7 @@
 ### 4. 文档 / payload 中的「危险字样」（非自动执行）
 
 `pentest-tools/src-hunter`、`attack-chain` 等 **Markdown/JSON 教学材料** 含 SQL 注入、`DROP` 示例、日志清理 **红队方法论**。  
-这些 **不会被 bootstrap 或 master-route 自动执行**；执行依赖 AI/人工在**已授权 scope** 下选用。
+这些 **不会被 bootstrap 或 master-route 自动执行**；执行依赖 AI/人工按任务需要选用。
 
 相关约束见：`ops/scope-contract.md`、`ops/skill-supply-chain.md`、`field-journal/precedent-*.md`。
 

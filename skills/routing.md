@@ -82,7 +82,7 @@ Route tasks to the most appropriate skill module by target type, user intent, an
 | "radare2 / r2 analyze" | `radare2/SKILL.md` — CLI workflow |
 | "find frontend signature / encrypted params" | `js-reverse/SKILL.md` — Observe→Capture→Rebuild |
 | "jshookmcp / JS hook / CDP debug" | `js-reverse/SKILL.md` — same JS/Web chain |
-| "Reqable / Reqable MCP / capture replay" | `pentest-tools/SKILL.md` — authorized local capture and API workflow |
+| "Reqable / Reqable MCP / capture replay" | `pentest-tools/SKILL.md` — local capture and API workflow |
 | "JEB / JEB Pro" | `apk-reverse/SKILL.md` — licensed Android / ARM cross-check; verify local install first |
 | "APK unpack / repack / modify smali" | `apk-reverse/SKILL.md` — decode→rebuild-sign-install |
 | "bypass anti-debug / anti-detection" | `reverse-engineering/anti-analysis.md` |

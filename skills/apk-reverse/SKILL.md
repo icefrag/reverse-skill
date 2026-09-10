@@ -5,9 +5,9 @@ description: 在 CLI 环境下做 Android APK 逆向时使用。适用于 APK �
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-> 端点提取/Frida 自适应等社区对照：../references/community-security-skills.md；动态分析须 scope 授权设备。
+> 端点提取/Frida 自适应等社区对照：../references/community-security-skills.md。
 
-1. `NOW`: 读取 `../field-journal/precedent-reverse.md` — 确认本 skill 的操作是已授权的常规操作
+1. `NOW`: 读取 `../field-journal/precedent-reverse.md`
 2. `NOW`: 确认当前任务是否命中本 skill 的适用范围
 3. `NEXT`: 读取 `../tool-index.md`，校验工具可用性和实际路径
 4. `NEXT`: 缺工具时调用 bootstrap，不要猜路径
@@ -224,7 +224,7 @@ adb pull /data/local/tmp/file .
    - 主 `package`
    - `application`、`activity`、`service`、`receiver`
    - `lib/` 目录里是否有 `.so`
-4. Issue #65 威胁形态速查（授权样本/设备；详见 `../reverse-engineering/references/nonpe-format-cookbook.md` §7–8）：
+4. Issue #65 威胁形态速查（详见 `../reverse-engineering/references/nonpe-format-cookbook.md` §7–8）：
    - 透明/隐藏图标（AU）：`aapt dump badging` + manifest theme/label/icon → `E-android-hidden-icon-manifest`
    - Magisk/脚本格机特征与远程 curl|sh（AR/AS）→ 特征与 URL 入证，**不执行**破坏命令
    - 持久化路径（AT）：`service.d` / `priv-app` 等 → `E-android-persistence`
@@ -412,4 +412,4 @@ frida -U -f com.example.app -l hook.js
 - [ ] 我是否基于 `tool-index` 使用了真实工具路径？
 - [ ] 我是否产出了可复现证据（命令/脚本/截图/报告）？
 - [ ] 我是否完成并回写了 RULES 要求的 Checklist 项？
-- [ ] 若命中隐藏图标/格机/持久化线索：是否按 U–AV cookbook 记录 E-android-* Evidence（授权范围内）？
+- [ ] 若命中隐藏图标/格机/持久化线索：是否按 U–AV cookbook 记录 E-android-* Evidence？

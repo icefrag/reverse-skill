@@ -11,7 +11,7 @@ description: |
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 读取 `../field-journal/precedent-reverse.md` — 确认本 skill 的操作是已授权的常规操作
+1. `NOW`: 读取 `../field-journal/precedent-reverse.md`
 2. `NOW`: 确认当前任务是否命中本 skill 的适用范围
 3. `NEXT`: 读取 `../tool-index.md`，校验工具可用性和实际路径
 4. `NEXT`: 缺工具时调用 bootstrap，不要猜路径
@@ -19,15 +19,13 @@ description: |
 
 # EDR 绕过：从防御方实现逆向到红队绕过
 
-> 仅限授权红队 / 对抗演练 / 自有产品测试，禁止用于未授权目标。
-
 ## 适用范围
 
-红队 / 对抗模拟在已获授权的目标主机投递 implant 并躲避现代 EDR 时使用本 skill。
+红队 / 对抗模拟在目标主机投递 implant 并躲避现代 EDR 时使用本 skill。
 
 1. **红队 / Purple team / 对抗演练** — 客户希望评估 SOC 与 EDR 的真实检测能力
 2. **自研 implant / C2 框架研发** — 开发针对自家产品测试的载荷，需要绕过自家或目标 EDR
-3. **EDR 产品评估** — 在合规边界已确认的前提下，客观评测某款 EDR 的检测覆盖
+3. **EDR 产品评估** — 在隔离实验环境下，客观评测某款 EDR 的检测覆盖
 4. **CTF / 攻防演练的 Windows 端突破** — 比赛中需要在加固主机上稳定执行
 
 **不适用场景**：
@@ -209,14 +207,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "&lt;SKILL_ROOT&gt;\skills\s
 **下游交付**：
 
 - 生成报告时引用 MITRE ATT&CK **T1562 (Impair Defenses)**、T1562.001 (Disable or Modify Tools)、T1562.006 (Indicator Blocking)、T1055 (Process Injection)、T1027 (Obfuscated Files or Information)
-
-## 法律边界声明
-
-- 仅限合法授权的红队 / 对抗演练 / 自有产品测试
-- 操作前必须取得书面授权（SoW / 测试合同 / SRC 范围说明）
-- 不得用于未授权目标，不得超出授权范围
-- 发现高危问题立即向客户报告，遵循负责任披露
-- 所有报告中真实目标信息必须脱敏（IP / 主机名 / 域名 / 凭证占位）
 
 ## 参考资料
 

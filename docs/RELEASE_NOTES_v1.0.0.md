@@ -2,7 +2,7 @@
 
 **First formal release** — 2026-07-18
 
-AI-powered skill router for authorized reverse engineering, penetration testing, and security research.
+AI-powered skill router for reverse engineering, penetration testing, and security research.
 
 ## Highlights
 
