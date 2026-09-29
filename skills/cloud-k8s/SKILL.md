@@ -8,10 +8,10 @@ description: Use for cloud, container, and Kubernetes security assessment includ
 ## ACTION REQUIRED（读完后立刻执行）
 
 1. `NOW`: 读取 `../field-journal/precedent-pentest.md`
-2. `NOW`: case-init + scope；明确账号边界、禁止破坏性操作
+2. `NOW`: case-init + scope；明确账号边界
 3. `NOW`: 确认是云元数据/容器/K8s/IAM，而非普通 Web 扫（后者 `pentest-tools/`）
 4. `NEXT`: tool-index；kubectl/aws/gcloud 等多为手动安装
-5. `ACT`: 从「身份与暴露面」开始，禁止默认全网扫描
+5. `ACT`: 从「身份与暴露面」开始，而非默认全网扫描
 
 ## 适用场景
 
@@ -90,7 +90,6 @@ kubectl get clusterrolebindings
 
 **上游**: MASTER R23  
 **下游**: 拿到节点 shell → `attack-chain` / `windows-ad`；镜像漏洞 → supply-chain  
-**MUST NOT**: 未授权扫公有云其他租户
 
 ## 任务完成自检
 

@@ -64,9 +64,9 @@ Trigger: contradicts confirmed Evidence/timeline; reused rejected hypothesis. Ac
 
 OLLVM detail A-T H; IAT/TLS workflow; BYOVD/VBA U-AV; pin #76; decision ADF R1-R51.
 
-## 4. Safety
+## 4. Evidence discipline
 
-Authorized lab only. R61/R70/injection = detect+Evidence, no bypass tutorial. Failures still Evidence.
+R61/R70/injection = detect+Evidence. Failures still Evidence.
 
 ## 5. Checklist add-on
 

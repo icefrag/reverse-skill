@@ -2,7 +2,6 @@
 
 > **This file is the behavior-chain source of truth.** Route tables live only in `skills/config/routing.json`. Regardless of which AI editor/client you are (Claude Code, Kiro, Cursor, Cline, Windsurf, Codex CLI, Aider, Continue, Reasonix, or others), after reading this file you MUST:
 > 1. Execute the hot path below — do not only acknowledge
-> 2. Keep the routing core client-neutral. Client-specific adapters are optional and MUST NOT be required by core workflows.
 
 ---
 
@@ -40,14 +39,6 @@ Conditional reads (load only when needed, do NOT preload):
 **Your goal is NOT a confirmation reply. Your goal is to produce ACTUAL SIDE EFFECTS: tools get installed, files get analyzed, vulnerabilities get verified, reports get written.**
 
 If you're unsure where to start, run master-route.ps1, then start working. Do NOT wait for the user to say "ok continue".
-
----
-
-## Client integration boundary
-
-The files in `skills/`, routing configuration, tests, manifests, case artifacts, and reports are the platform-neutral core. A host such as Claude Code, Codex, Cursor, OpenCode, or another agent may load this repository through its own project-instruction or skill adapter, but no host-specific file is required for routing or tests.
-
-Core scripts MUST NOT write client-global configuration. Optional adapters belong in isolated platform documentation or adapter packages and must preserve identical routing semantics.
 
 ---
 
@@ -132,11 +123,6 @@ Hot path only:
 - Same method fails 2-3 times → MUST switch approach
 - Single command repeated ≥ 3 times → MUST stop and evaluate
 - Approaching tool call budget (>30 calls per subtask) → report to user, ask whether to continue
-
-### Security Boundaries
-- Personal lab edition: targets are the owner's lab systems, samples, and user-named ranges by default
-- High-severity vulnerability found → immediately inform user with evidence
-- Do NOT retain un-anonymized sensitive info in reports or logs
 
 ### Output Quality
 - Critical operations MUST include reproducible commands (not just descriptions)
@@ -359,9 +345,9 @@ bash <SKILL_ROOT>/kali/scripts/refresh-tool-index.sh
 
 ---
 
-## Compact reminder (do NOT write this into client-global config)
+## Compact reminder
 
-> Optional in-session recap. Core scripts MUST NOT write client-global configuration.
+> Optional in-session recap.
 
 ### Trigger Keywords (Bilingual)
 

@@ -23,7 +23,6 @@
 2. 写 scope.md（ops/scope-contract）
 3. 指定 specialist_roles[] 与 handoff 条件
 4. 每阶段结束：更新 timeline + workitems；决定继续/换角色/出报告
-5. 禁止跳过 scope 直接 cpe 扫生产
 ```
 
 ## 交接（Handoff）规则
@@ -60,4 +59,3 @@
 ## MUST NOT
 
 - 不要假设存在 Z3r0 会话 API  
-- 不要为角色启动未授权目标的额外扫描  

@@ -7,7 +7,7 @@ description: Use for database security assessment covering PostgreSQL/MySQL/MSSQ
 
 ## ACTION REQUIRED（读完后立刻执行）
 
-1. `NOW`: 读取 precedent-pentest；**生产库禁止破坏性语句** unless 明确允许
+1. `NOW`: 读取 precedent-pentest
 2. `NOW`: scope 写清实例、账号权限、是否允许写/删
 3. `NEXT`: 客户端工具路径
 4. `ACT`: 暴露面 → 认证 → 授权 → 配置 → 利用链验证（安全）

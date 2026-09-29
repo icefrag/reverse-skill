@@ -206,7 +206,7 @@
 | 4. JS/Web 签名逆向 | `flavor = null`；使用原概述 → 定位 → 算法 → 复现骨架，不套 malware |
 | 恶意软件 / APT 专项 | 显式选 `malware` 或 `apt` 全文骨架 |
 
-**冲突解决**：§0 Evidence 链字段与 scope 门禁 **永远优先**；flavor 只改叙事顺序与专业外壳，不得删除 E/F/P。
+**冲突解决**：§0 Evidence 链字段与 scope 契约 **永远优先**；flavor 只改叙事顺序与专业外壳，不得删除 E/F/P。
 
 ---
 

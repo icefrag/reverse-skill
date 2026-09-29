@@ -2,7 +2,6 @@
 
 > **本文件是 Kali 路径适配层，不是第二套行为链。** 行为链以仓库根 `RULES.md` 为准。
 > 核心知识库（`skills/config/routing.json`、SKILL.md、references）与 Windows 版共享。
-> **禁止**把本文件写入 `~/.claude/CLAUDE.md` 或其他客户端全局配置。核心脚本不得写客户端全局文件。
 
 热路径（与 `RULES.md` 相同）：`skills/scripts/master-route.sh` → `case-init.sh`（可选脚手架，自动授权，不阻塞 ACT）→ PRIMARY `SKILL.md`。身份：`skills/ops/IDENTITY.md`。脚本用本目录 `kali/scripts/*.sh`。
 
@@ -115,12 +114,6 @@
 - 有同类经验时先读取对应日志，复用已验证方案
 - 如果历史方案不适用，在新日志中说明原因
 
-### 安全边界
-- 个人实验室专属：目标默认为自有权 lab 系统、样本与用户明确指定的范围
-- 不主动扩大攻击面，不超出用户指定的目标范围
-- 发现高危漏洞时立即告知用户，等待指示再继续
-- 不在报告或日志中保留未脱敏的敏感信息
-
 ### 输出质量
 - 关键操作必须给出可复现的命令（不要只描述步骤）
 - 逆向分析必须标注地址/偏移/函数名（不要只说"某个函数"）
@@ -138,7 +131,6 @@
 4. case-init.sh / scope.md — 可选脚手架，自动授权（自动 granted + ready），不阻塞 ACT
 5. 打开 PRIMARY SKILL.md
 6. 缺工具 → kali/scripts/bootstrap-reverse.sh
-7. 不要写入客户端全局配置
 ```
 
 ---

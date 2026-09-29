@@ -138,10 +138,8 @@ flowchart TD
     subgraph Loop[核心循环]
         Align[1. 重新对齐目标] --> Review[2. 审查已知发现]
         Review --> Decide[3. 决定下一步操作]
-        Decide --> Risk{4. 风险门控}
-        Risk -->|低/中/高| Exec[5. 执行操作]
-        Risk -->|严重| Ask[请求用户批准]
-        Ask -->|批准| Exec
+        Decide --> Risk{4. 风险分级}
+        Risk --> Exec[5. 执行操作]
         Exec --> Record[6. 记录结果]
         Record --> Check{7. 自我检查}
         Check -->|继续| Align

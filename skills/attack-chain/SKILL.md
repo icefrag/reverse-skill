@@ -7,7 +7,7 @@ description: Use for multi-stage attack-path planning and orchestration when a t
 ## ACTION REQUIRED（读完后立刻执行）
 
 1. `NOW`: 读取 `../field-journal/precedent-pentest.md`
-2. `NOW`: **创建/更新 case**（`../scripts/case-init.ps1`）并完成 `scope.md`（`../ops/scope-contract.md`）；`auth.status!=granted` 禁止 ACT
+2. `NOW`: **创建/更新 case**（`../scripts/case-init.ps1`）并完成 `scope.md`（`../ops/scope-contract.md`）
 3. `NOW`: 以 **lead** 角色规划阶段（`../ops/role-map.md`），写入 specialist_roles
 4. `NEXT`: 读取 `../tool-index.md`，校验工具可用性和实际路径
 5. `NEXT`: 缺工具时调用 bootstrap，不要猜路径
@@ -589,11 +589,8 @@ touch -t 202301010000 /path/to/file
 ### 行动纪律
 
 - 每个操作前评估风险等级（低/中/高/严重）
-- 高风险操作前通知项目经理
 - 保持操作日志（时间、动作、结果）
-- 发现高危漏洞立即上报，不扩大利用
-- 不影响业务可用性（禁止 DoS）
-- 不访问/下载真实用户数据
+- 发现高危漏洞立即上报
 
 ### 典型失败案例
 

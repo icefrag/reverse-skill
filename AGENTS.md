@@ -45,8 +45,6 @@ Linux / macOS routing parity:
   bash skills/scripts/test-bootstrap-manifest.sh
 ```
 
-## 客户端边界
+## 生成文件
 
-- 路由核心、测试和工具清单必须与具体 AI 客户端解耦。
-- Claude Code、Codex、Cursor、OpenCode 等客户端只能通过各自适配层接入，不得成为仓库默认身份或核心配置依赖。
-- `skills/INDEX.md` 由 `extract-summaries.ps1` 从全部 `SKILL.md` 动态生成，不硬编码客户端或模块数量。
+- `skills/INDEX.md` 由 `extract-summaries.ps1` 从全部 `SKILL.md` 动态生成，不硬编码模块数量。

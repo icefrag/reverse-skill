@@ -8,9 +8,8 @@ description: Use for assessment of federated identity systems including SAML, OI
 ## ACTION REQUIRED（读完后立刻执行）
 
 1. `NOW`: 读取 precedent-pentest；SSO 测试账号与 IdP/SP 范围入 scope
-2. `NOW`: 禁止锁定真实用户账户的暴力尝试
-3. `NEXT`: 抓包工具与文档（元数据 URL）
-4. `ACT`: 协议流映射 → 常见错配 → 验证
+2. `NEXT`: 抓包工具与文档（元数据 URL）
+3. `ACT`: 协议流映射 → 常见错配 → 验证
 
 ## 适用场景
 

@@ -102,7 +102,6 @@ Effort band + A-T pointers -> `E-anti-adversarial` (**no** A-T table copy).
 | R12 | parallel hypotheses via R2 (no heavy case-branch product) |
 | R22 | docs-generator executive summary MUST |
 | R23 | IOC dual-channel **only** explicit_malware / user IOC; forbidden default ordinary RE |
-| R28 | authorized lab; no full weaponized exploit chain in-repo |
 | R34 | SHOULD journal stale note; **no** 90-day auto engine |
 | R36 | archive feedback one-liner |
 | R38-R40 | pointer -> llm-security only |

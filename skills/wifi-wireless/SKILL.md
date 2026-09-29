@@ -46,7 +46,6 @@ description: Use for wireless security assessment including Wi-Fi capture, WPA h
 ## 路由上下文
 
 **上游**: MASTER R29  
-**MUST NOT**: 未授权 deauth、对非目标客户网络操作
 
 ## 任务完成自检
 

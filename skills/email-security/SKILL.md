@@ -46,7 +46,6 @@ description: Use for email security review including phishing analysis, header a
 ## 路由上下文
 
 **上游**: MASTER R36  
-**MUST NOT**: 未授权对第三方域群发测试钓鱼
 
 ## 任务完成自检
 

@@ -262,10 +262,6 @@ if (-not $spec.Available) {
 
 打开 `skills/SKILL.md` 模块表；跑 `extract-summaries.ps1` 重生 `INDEX.md`。
 
-### 5.3 不要写客户端全局规则
-
-禁止把路由表写入 `~/.claude` / `.kiro/steering` 作为本包默认步骤。客户端适配是可选的。
-
 ---
 
 ## 6. 刷新索引
